@@ -373,7 +373,16 @@
             const selectedDate = dateInput.value;
 
             // 日付が選択されていないかチェックしていない
-            // 未来の日付かどうかをチェックしていない
+            
+            // --- 変更点: 未来の日付かどうかをチェック ---
+            const selectedDateObj = new Date(selectedDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); 
+
+            if (selectedDateObj > today) { 
+                alert('未来の日付は選択できません');
+                return; // 処理を中断
+            }
 
             if (selectedDate) {
                 // localStorageに保存
